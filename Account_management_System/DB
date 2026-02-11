@@ -1,0 +1,25 @@
+
+CREATE TABLE ACCOUNT_TBL(
+        Account_Number  Varchar2(10)  PRIMARY KEY,
+        Customer_Name   Varchar2(15),
+        Balance         Number(10,2)
+        );
+        
+INSERT INTO ACCOUNT_TBL values('1234567890', 'Reddy', 80000);
+INSERT INTO ACCOUNT_TBL values('1234567891', 'Mahesh', 0);
+INSERT INTO ACCOUNT_TBL values('1234567892', 'Dhanu', 100);
+INSERT INTO ACCOUNT_TBL values('1234567893', 'Sam', 500);
+
+
+CREATE TABLE TRANSFER_TBL(
+        Transaction_ID               Number(4)   PRIMARY KEY,
+        Account_Number               Varchar2(10) CONSTRAINT Acc_fk REFERENCES ACCOUNT_TBL(Account_Number),
+        Beneficiary_account_number   Varchar2(10) CONSTRAINT  Ban_fk REFERENCES ACCOUNT_TBL(Account_Number)
+        );
+        
+ 
+ALTER TABLE ACCOUNT_TBL
+        ADD (
+              Transaction_Date  Date,
+              Transaction_Amount  Number(10,2)
+             );
